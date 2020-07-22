@@ -19,9 +19,7 @@ C:\Users\Renan Barbosa\source\repos\d3-coffee-project\obj\Debug\netcoreapp3.1\d3
 C:\Users\Renan Barbosa\source\repos\d3-coffee-project\obj\Debug\netcoreapp3.1\d3-coffee-project.TagHelpers.input.cache
 C:\Users\Renan Barbosa\source\repos\d3-coffee-project\obj\Debug\netcoreapp3.1\d3-coffee-project.TagHelpers.output.cache
 C:\Users\Renan Barbosa\source\repos\d3-coffee-project\obj\Debug\netcoreapp3.1\d3-coffee-project.RazorCoreGenerate.cache
-C:\Users\Renan Barbosa\source\repos\d3-coffee-project\obj\Debug\netcoreapp3.1\Razor\Pages\Error.cshtml.g.cs
 C:\Users\Renan Barbosa\source\repos\d3-coffee-project\obj\Debug\netcoreapp3.1\Razor\Pages\Index.cshtml.g.cs
-C:\Users\Renan Barbosa\source\repos\d3-coffee-project\obj\Debug\netcoreapp3.1\Razor\Pages\Privacy.cshtml.g.cs
 C:\Users\Renan Barbosa\source\repos\d3-coffee-project\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_Layout.cshtml.g.cs
 C:\Users\Renan Barbosa\source\repos\d3-coffee-project\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Renan Barbosa\source\repos\d3-coffee-project\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewImports.cshtml.g.cs
