@@ -9,6 +9,7 @@ var width = 600 - margin.left - margin.right;
 var height = 400 - margin.top - margin.bottom;
 
 var flag = true;
+var t = d3.transition().duration(750);
 
 var g = d3.select("#coffee-area")
     .append("svg")
@@ -59,7 +60,8 @@ d3.json("data/revenues.json").then(function(data) {
     });
 
     d3.interval(function() {
-        update(data);
+        var newData = flag ? data : data.slice(1);
+        update(newData);
         flag = !flag;
     }, 1000);
 
@@ -76,34 +78,42 @@ function update(data) {
 
     // X Axis
     var xAxisCall = d3.axisBottom(x);
-    xAxistGroup.call(xAxisCall)
+    xAxistGroup.transition(t).call(xAxisCall)
 
     // Y Axis
     var yAxisCall = d3.axisLeft(y)
         .tickFormat(function(d) { return "$" + d; });
-    yAxisGroup.call(yAxisCall)
+    yAxisGroup.transition(t).call(yAxisCall)
 
     // JOIN new data with old elements    
     var rects = g.selectAll("rect")
-        .data(data)
+        .data(data, function(d) {
+            return d.month;
+        })
 
     // EXIT old elements not present in new data.
-    rects.exit().remove();
-
-    // UPDATE old elements present in new data.
-    rects.attr("x", function(d, i) { return x(d.month); })
-        .attr("y", function(d) { return y(d[value]); })
-        .attr("height", function(d) { return height - y(d[value]); })
-        .attr("width", x.bandwidth);
+    rects.exit()
+        .attr("fill", "red")
+        .transition(t)
+        .attr("y", y(0))
+        .attr("height", 0)
+        .remove();
 
     // ENTER new elements present in new data.
     rects.enter()
         .append("rect")
+        .attr("fill", "grey")
+        .attr("y", y(0))
+        .attr("height", 0)
         .attr("x", function(d, i) { return x(d.month); })
-        .attr("y", function(d) { return y(d[value]); })
-        .attr("height", function(d) { return height - y(d[value]); })
         .attr("width", x.bandwidth)
-        .attr("fill", "grey");
+        // UPDATE old elements present in new data.
+        .merge(rects)
+        .transition(t)
+        .attr("x", function(d, i) { return x(d.month); })
+        .attr("width", x.bandwidth)
+        .attr("y", function(d) { return y(d[value]); })
+        .attr("height", function(d) { return height - y(d[value]); });
 
     var label = flag ? "Revenue" : "Profit";
     yLabel.text(label);
